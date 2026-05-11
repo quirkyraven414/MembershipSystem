@@ -1,0 +1,667 @@
+{
+	"info": {
+		"name": "Membership System API",
+		"description": "Complete API collection for the Membership Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users"]
+						}
+					}
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users"]
+						}
+					}
+				},
+				{
+					"name": "Search User by ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/search",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users", "search"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Membership Management",
+			"item": [
+				{
+					"name": "Create Membership",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"tier\": \"SILVER\",\n  \"duration\": \"MONTHLY\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/memberships",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "memberships"]
+						}
+					}
+				},
+				{
+					"name": "Get Current Membership",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/memberships/user/:userId",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "memberships", "user", ":userId"],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Upgrade Membership",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"membershipId\": 1,\n  \"userId\": 1,\n  \"newTier\": \"GOLD\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/memberships/upgrade",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "memberships", "upgrade"]
+						}
+					}
+				},
+				{
+					"name": "Downgrade Membership",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"membershipId\": 1,\n  \"userId\": 1,\n  \"newTier\": \"SILVER\",\n  \"isSubscriptionEnd\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/memberships/downgrade",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "memberships", "downgrade"]
+						}
+					}
+				},
+				{
+					"name": "Cancel Membership",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"membershipId\": 1,\n  \"userId\": 1,\n  \"isSubscriptionEnd\": false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/memberships/cancel",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "memberships", "cancel"]
+						}
+					}
+				},
+				{
+					"name": "Get Membership History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/memberships/history/:userId",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "memberships", "history", ":userId"],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Transaction History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/memberships/transactions/:userId",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "memberships", "transactions", ":userId"],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Pricing Estimates",
+			"item": [
+				{
+					"name": "Get Pricing Estimate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"newTier\": \"GOLD\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pricing/estimate",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "pricing", "estimate"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Order Management",
+			"item": [
+				{
+					"name": "Create Order (Auto Tier Evaluation)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"price\": 5000\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/orders",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "orders"]
+						}
+					}
+				},
+				{
+					"name": "Get User Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders/user/:userId",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "orders", "user", ":userId"],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "orders"]
+						}
+					}
+				},
+				{
+					"name": "Evaluate User Tier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/orders/user/:userId/evaluate-tier",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "orders", "user", ":userId", "evaluate-tier"],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Tier Progression Rules",
+			"item": [
+				{
+					"name": "Get All Tier Rules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tier-rules",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tier-rules"]
+						}
+					}
+				},
+				{
+					"name": "Get Tier Rule by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tier-rules/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tier-rules", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Rule - Gold (10+ Orders)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ruleName\": \"GOLD_ORDER_COUNT\",\n  \"targetTier\": \"GOLD\",\n  \"criteriaType\": \"ORDER_COUNT\",\n  \"operator\": \">=\",\n  \"thresholdValue\": 10,\n  \"timeWindow\": \"ALL_TIME\",\n  \"cohortName\": null,\n  \"active\": true,\n  \"priority\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tier-rules",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tier-rules"]
+						}
+					}
+				},
+				{
+					"name": "Create Rule - Platinum (₹50k Monthly)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ruleName\": \"PLATINUM_MONTHLY_VALUE\",\n  \"targetTier\": \"PLATINUM\",\n  \"criteriaType\": \"ORDER_VALUE\",\n  \"operator\": \">=\",\n  \"thresholdValue\": 50000,\n  \"timeWindow\": \"CURRENT_MONTH\",\n  \"cohortName\": null,\n  \"active\": true,\n  \"priority\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tier-rules",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tier-rules"]
+						}
+					}
+				},
+				{
+					"name": "Create Rule - Gold (VIP Cohort)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ruleName\": \"GOLD_VIP_COHORT\",\n  \"targetTier\": \"GOLD\",\n  \"criteriaType\": \"COHORT\",\n  \"operator\": \"=\",\n  \"thresholdValue\": null,\n  \"timeWindow\": null,\n  \"cohortName\": \"VIP_CUSTOMERS\",\n  \"active\": true,\n  \"priority\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tier-rules",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tier-rules"]
+						}
+					}
+				},
+				{
+					"name": "Update Tier Rule",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ruleName\": \"GOLD_ORDER_COUNT\",\n  \"targetTier\": \"GOLD\",\n  \"criteriaType\": \"ORDER_COUNT\",\n  \"operator\": \">=\",\n  \"thresholdValue\": 15,\n  \"timeWindow\": \"ALL_TIME\",\n  \"cohortName\": null,\n  \"active\": true,\n  \"priority\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tier-rules/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tier-rules", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Tier Rule",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tier-rules/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tier-rules", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Additional Charges Management",
+			"item": [
+				{
+					"name": "Get All Charges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/charges",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "charges"]
+						}
+					}
+				},
+				{
+					"name": "Get Charge by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/charges/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "charges", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Downgrade Convenience Charge (5%)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"chargeName\": \"DOWNGRADE_CONVENIENCE_CHARGE\",\n  \"chargeType\": \"CONVENIENCE\",\n  \"active\": true,\n  \"rules\": {\n    \"applicableFor\": [\"DOWNGRADE\"],\n    \"calculationType\": \"PERCENTAGE\",\n    \"value\": 5,\n    \"tiers\": [],\n    \"description\": \"5% convenience charge for downgrades\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/charges",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "charges"]
+						}
+					}
+				},
+				{
+					"name": "Create Delivery Charge (Tiered)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"chargeName\": \"DELIVERY_CHARGE\",\n  \"chargeType\": \"DELIVERY\",\n  \"active\": true,\n  \"rules\": {\n    \"applicableFor\": [\"NEW_SUBSCRIPTION\", \"UPGRADE\", \"DOWNGRADE\"],\n    \"calculationType\": \"TIERED\",\n    \"tiers\": [\n      {\"min\": 0, \"max\": 500, \"type\": \"FIXED\", \"value\": 50},\n      {\"min\": 501, \"max\": 1000, \"type\": \"FIXED\", \"value\": 30},\n      {\"min\": 1001, \"max\": 999999, \"type\": \"FIXED\", \"value\": 0}\n    ],\n    \"description\": \"Tiered delivery charge based on order value\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/charges",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "charges"]
+						}
+					}
+				},
+				{
+					"name": "Update Charge",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"chargeName\": \"DOWNGRADE_CONVENIENCE_CHARGE\",\n  \"chargeType\": \"CONVENIENCE\",\n  \"active\": true,\n  \"rules\": {\n    \"applicableFor\": [\"DOWNGRADE\"],\n    \"calculationType\": \"PERCENTAGE\",\n    \"value\": 7,\n    \"tiers\": [],\n    \"description\": \"7% convenience charge for downgrades\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/charges/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "charges", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Charge",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/charges/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "charges", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Evaluate Charges",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/charges/evaluate?transactionType=DOWNGRADE&tier=GOLD&orderValue=1000",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "charges", "evaluate"],
+							"query": [
+								{
+									"key": "transactionType",
+									"value": "DOWNGRADE"
+								},
+								{
+									"key": "tier",
+									"value": "GOLD"
+								},
+								{
+									"key": "orderValue",
+									"value": "1000"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
